@@ -1,6 +1,7 @@
 package VisionGoggles;
 
 import com.badlogic.gdx.utils.ArrayMap;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -12,12 +13,18 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class UklViewPorts {
     public static ArrayMap<String, Viewport> views;
+    private float MAXWIDTH = 2560;
+    private float MAXHEIGHT = 2560;
+    private float MINWIDTH = 544;
+    private float MINHEIGHT = 416;
 
     public static void create(){
-        views.put("FillScreen", new FitViewport(544.0f,416.0f, Scene.camera.cam));
+        views = new ArrayMap<String, Viewport>();
+        views.put("Fit", new FitViewport(544.0f,416.0f, Scene.camera.cam));
+        views.put("Extend", new ExtendViewport(544.0f,416.0f, Scene.camera.cam));
     }
 
     public static void resize(int width, int height, String view){
-        views.get("FillScreen").update(width, height);
+        views.get(view).update(width, height);
     }
 }

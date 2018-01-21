@@ -44,7 +44,6 @@ public class Game extends ApplicationAdapter {
 	private AnimatedObject mai;
 
 	public static Map<String, SceneController> SceneControllers = new HashMap<String, SceneController>(); //List of Maps.
-	public OrthographicCameraSample cam;
 
 
 	public Scene testScene;
@@ -66,6 +65,8 @@ public class Game extends ApplicationAdapter {
 
 		Stage1 t = new Stage1();
 		sceneManager.currentScene = t.stage1;
+		UklViewPorts.create();
+		UklViewPorts.resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), "Extend");
 	}
 
 	@Override
