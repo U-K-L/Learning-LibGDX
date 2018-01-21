@@ -63,10 +63,12 @@ public class Game extends ApplicationAdapter {
 
 		sceneController = new SceneController();
 
-		Stage1 t = new Stage1();
-		sceneManager.currentScene = t.stage1;
+		//Stage1 t = new Stage1();
+		//sceneManager.currentScene = t.stage1;
 		UklViewPorts.create();
 		UklViewPorts.resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), "Extend");
+		UklParticleEffects particle = new UklParticleEffects();
+		particle.create();
 	}
 
 	@Override

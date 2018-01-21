@@ -38,6 +38,7 @@ public class Scene{
 	public int camX;
 	public int camY;
 	public Gdx g;
+	//private UklParticleEffects particle;
 	ArrayList<GameObject> GameObjects = new ArrayList<GameObject>();
 
 	//Constructor method.
@@ -50,6 +51,7 @@ public class Scene{
 		//name = Name;
 		HashKey = name + SceneManager.SceneMap.size();
 		SceneManager.SceneMap.put(HashKey, this);
+
 
 	}
 
@@ -107,6 +109,7 @@ public class Scene{
 							false, false);
 					object.render(batch);
 				}
+
 			}
 		batch.end();
 	}
