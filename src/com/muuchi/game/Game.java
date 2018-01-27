@@ -42,8 +42,6 @@ public class Game extends ApplicationAdapter {
 	private String currentAtlasKey = new String("0001");
 	private AnimatedObject mai;
 
-	public UklParticleEffects particle;
-	public ParticleEffect particleEffect;
 
 	public static Map<String, SceneController> SceneControllers = new HashMap<String, SceneController>(); //List of Maps.
 
@@ -63,7 +61,7 @@ public class Game extends ApplicationAdapter {
 		sceneManager.currentScene = t.stage1;
 		UklViewPorts.create();
 		UklViewPorts.resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), "Extend");
-		particle = new UklParticleEffects(1, "data/flame.p");
+
 	}
 
 	@Override
@@ -82,8 +80,6 @@ public class Game extends ApplicationAdapter {
 		if(SceneManager.currentScene != null);
 			SceneManager.currentScene.controller.update();
 
-		particle.particles[0].draw(batch, Gdx.graphics.getDeltaTime());
-		particle.particles[0].setPosition(30, 350);
 		batch.end();
 	}
 
