@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.ParticleEffect;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.FPSLogger;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -15,9 +16,7 @@ import java.util.Map;
 import VisionGoggles.ExportScene;
 import VisionGoggles.GameObject;
 import VisionGoggles.*;
-import maps.Stage1;
-import maps.Test;
-import maps.park;
+import maps.*;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -43,6 +42,9 @@ public class Game extends ApplicationAdapter {
 	private String currentAtlasKey = new String("0001");
 	private AnimatedObject mai;
 
+	public UklParticleEffects particle;
+	public ParticleEffect particleEffect;
+
 	public static Map<String, SceneController> SceneControllers = new HashMap<String, SceneController>(); //List of Maps.
 
 
@@ -52,29 +54,22 @@ public class Game extends ApplicationAdapter {
 
 		fps = new FPSLogger();
 		batch = new SpriteBatch();
-		//img = new Texture("badlogic.jpg");
-		//SceneControllers.put(Test.name, new Test());
-		//SceneControllers.put(park.name, new park());
 		Camera cam = new Camera();
 		Scene.setCamera(cam);
-
-		//SceneControllers.put(Test.name, new Test());
-
-
 		sceneController = new SceneController();
 
-		//Stage1 t = new Stage1();
-		//sceneManager.currentScene = t.stage1;
+		//nullStage n = new nullStage();
+		Stage1 t = new Stage1();
+		sceneManager.currentScene = t.stage1;
 		UklViewPorts.create();
 		UklViewPorts.resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), "Extend");
-		UklParticleEffects particle = new UklParticleEffects();
-		particle.create();
+		particle = new UklParticleEffects(1, "data/flame.p");
 	}
 
 	@Override
 	public void render () {
 		fps.log();
-		Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClearColor(255, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 
@@ -87,6 +82,8 @@ public class Game extends ApplicationAdapter {
 		if(SceneManager.currentScene != null);
 			SceneManager.currentScene.controller.update();
 
+		particle.particles[0].draw(batch, Gdx.graphics.getDeltaTime());
+		particle.particles[0].setPosition(30, 350);
 		batch.end();
 	}
 
